@@ -5,32 +5,90 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7611533170.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
       <img src="assets/images/logo.png" class="logo" />
     </header>
+    <!-- contact modal -->
+    <div class="modal">
+      <div id="sent">
+        <span class="close2">&times;</span>
+        <p>Message envoyé!</p>
+        <button id="fermer">Fermer</button>
+      </div>
+      <div class="modalbg">
+        <p id="contactezmoi">Contactez-moi</p>
+        <p id="nom"></p>
+        <span class="close">&times;</span>
+        <div class="modal-body" id="form">
+          <form id="form">
+            <div class="formData">
+              <label>Prénom <span class="error" id="firstErr"></span> </label><br>
+              <input class="text-control" type="text" id="first" name="first"/><br>
+            </div>
+            <div class="formData">
+              <label>Nom <span id="lastErr" class="error"></span></label><br>
+              <input class="text-control" type="text" id="last" name="last"/><br>
+            </div>
+            <div class="formData">
+              <label>Email <span id="emailErr" class="error"></span></label><br>
+              <input class="text-control" type="email" id="email" name="email"/><br>
+            </div>
+            <div class="formData">
+              <label>Votre message <span id="messageErr" class="error"></span></label><br>
+              <textarea class="text-control" type="text" id="message" name="message"></textarea><br>
+            </div>
+            <input class="btn-submit" type="submit" class="button" value="Envoyer"/>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+    
+
+    <!-- lightbox -->
+    <div id="slide">
+      <span id="closeSlide">&times;</span>
+      <div id="previous">&#60;</div>
+      <div id="zoomContainer">
+        <img src="" alt="" id="zoom">
+        <video id="video" controls><source src="" type="video/mp4"></video>
+        <div id="title"></div>
+      </div>
+      <div id="next">&#62;</div>
+    </div>
+
+    <!-- photos videos -->
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
+      <div class="sort">
+        <p>Trier par</p>
+        <div class="dropdown">
+          <button class="dropbtn" id="order">Popularité</button>
+          <div class="dropdown-content">
+          <a id="date" class="tri">Date</a>
+          <a id="likes" class="tri">Popularité</a>
+          <a id="titre" class="tri">Titre</a>
+          </div>
+        </div>
+      </div>
+      <div class="media_section" id="msec"></div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
+    
+    <!-- tarif -->
+    <div class="price">
+      <p id="totalLikes"></p>
+      <i class="fa-solid fa-heart"></i>
+    </div>
+    
+    <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/pages/modal.js"></script>
+    <script src="scripts/factories/media.js"></script>
+    <script src="scripts/factories/lightbox.js"></script>
   </body>
 </html>
