@@ -29,6 +29,20 @@ function lightbox(){
                 }
                 title.textContent = wantedArticle.childNodes[1].childNodes[0].textContent;
 
+
+                const max = article.length - 1;
+                if(i <= 0){
+                    previous.style.color ='grey';
+                    next.style.color ='#901C1C';
+                    
+                } else if (i >= max){
+                    next.style.color ='grey';
+                    previous.style.color ='#901C1C';
+                } else {
+                    previous.style.color ='#901C1C';
+                    next.style.color ='#901C1C';
+                }
+
                 // element precedent
                 previous.onclick = function(){
                     if(i > 0){
@@ -48,12 +62,19 @@ function lightbox(){
                         }
                         title.textContent = article[i].childNodes[1].childNodes[0].textContent;
                     }
+                    if(i == 0){
+                        previous.style.color ='grey';
+                        next.style.color ='#901C1C';  
+                    } else {
+                        previous.style.color ='#901C1C';
+                        next.style.color ='#901C1C';
+                    }
                 }
 
 
                 //element suivant
                 next.onclick = function(){
-                    if(i < article.length){
+                    if(i < max){
                         i = i + 1;
                         if(article[i].firstChild.nodeName === "IMG"){
                             console.log(article[i].firstChild.nodeName);
@@ -70,8 +91,14 @@ function lightbox(){
                         }
                         title.textContent = article[i].childNodes[1].childNodes[0].textContent;
                     }
+                    if(i == max){
+                        next.style.color ='grey';
+                        previous.style.color ='#901C1C';  
+                    } else {
+                        previous.style.color ='#901C1C';
+                        next.style.color ='#901C1C';
+                    }
                 }
-
                 break;
             }
         }
