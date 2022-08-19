@@ -1,6 +1,6 @@
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
-        let response = await fetch('https://mosmid.github.io/Front-End-Fisheye/data/photographers.json', {method: 'GET'});
+        let response = await fetch('/data/photographers.json', {method: 'GET'});
         let donnees = await response.json();
         let photographers = donnees.photographers;
         return ({photographers});
