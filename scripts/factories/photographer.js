@@ -6,6 +6,7 @@ function photographerFactory(data) {
     //affichage des infos du photographe dans le header
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute("class", "items");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", name);
