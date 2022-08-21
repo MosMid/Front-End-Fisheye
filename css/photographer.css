@@ -40,7 +40,13 @@ html {
     transition: 0.4s;
     border-radius: 10px;
 }
-.media_section article:hover {
+.media_section .container:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    text-shadow: 0px 8px 16px rgba(0,0,0,0.2), 0 0 1em rgba(0,0,0,0.2), 0 0 0.2em rgba(0,0,0,0.2);
+    transform: scale(1.02);
+}
+
+.media_section .container:focus {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     text-shadow: 0px 8px 16px rgba(0,0,0,0.2), 0 0 1em rgba(0,0,0,0.2), 0 0 0.2em rgba(0,0,0,0.2);
     transform: scale(1.02);
@@ -432,6 +438,19 @@ html {
     top: 45%;
     right: 5%;
     font-size: 48px;
+    color: #901C1C;
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+}
+
+.container .fa-heart {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    font-size: 22px;
     color: #901C1C;
     cursor: pointer;
 }

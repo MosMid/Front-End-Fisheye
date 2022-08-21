@@ -72,3 +72,8 @@ h1 {
     line-height: 0px;
     color: gray;
 }
+
+article img:hover {
+    box-shadow: 0px 16px 32px 0px rgba(0,0,0,0.5);
+    transform: scale(1.1);
+}
