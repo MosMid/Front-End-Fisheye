@@ -1,9 +1,9 @@
-(function(){
-    const media = document.getElementById('msec');
-    const items = media.getElementsByClassName('items');
+function keyboard(data){
+    const items = data;
     const codes = {38:-3,40:3,39:1,37:-1};
     let reset =0;
 
+    // attendre que les elements de la page se chargent
     setTimeout(function(){
         for(var i=0; i<items.length; i++){
             items[i].count = i;
@@ -11,6 +11,8 @@
         reset = items[0].firstElementChild;
     },5000);
 
+
+    // navigation entre les elements de la page
     var i = 0;
     function handleKeys(e) {
         var keyCode = e.keyCode;
@@ -26,14 +28,19 @@
                     i = i + codes[keyCode];
                     reset = items[t.count + codes[keyCode]].firstElementChild;
                 }
+                items[t.count + codes[keyCode]].setAttribute('tabindex', '-1');
+                items[t.count + codes[keyCode]].focus();
+                items[t.count + codes[keyCode]].removeAttribute('tabindex');
             }
         }
     }
+
+    // selection de l'element souhaité
     addEventListener('keydown', handleKeys);
     document.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
           event.preventDefault();
           items[i].click();
         }
-      });
-})();
+    });
+};

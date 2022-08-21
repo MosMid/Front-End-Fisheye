@@ -10,6 +10,8 @@ async function getMedia() {
     const media = donnees.media.filter(media => media.photographerId == id);
     const photographer = donnees.photographers.filter(photographers => photographers.id == id);
     lightbox(media);
+    const items = document.getElementsByClassName('article');
+    keyboard(items);
     return {media, photographer};
 };
 
