@@ -39,17 +39,28 @@ function mediaFactory(data) {
         coeur.setAttribute("class", "fa-solid fa-heart");
         var intLikes = parseInt(likes,10);
 
+
+        //Incrementation des likes
         let clicked = false;
         coeur.onclick = function(){
+            var totalLikes = parseInt(document.querySelector('#totalLikes').textContent);
+            like.parentNode.removeChild(like);
             if (clicked == false){
-                like.parentNode.removeChild(like);
                 intLikes = intLikes + 1;
-                like.textContent = intLikes;
-                div.appendChild(like);
                 coeur.style.color = '#db8876';
                 like.style.color = '#db8876';
+                totalLikes = totalLikes + 1;
                 clicked = true;
+            } else {
+                intLikes = intLikes - 1;
+                coeur.style.color = '#901C1C';
+                like.style.color = '#901C1C';
+                totalLikes = totalLikes - 1;
+                clicked = false;
             }
+            like.textContent = intLikes;
+            div.appendChild(like);
+            document.querySelector('#totalLikes').textContent = totalLikes;
         }
 
         like.textContent = intLikes;

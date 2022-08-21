@@ -48,13 +48,11 @@ function lightbox(){
                     if(i > 0){
                         i = i - 1;
                         if(article[i].firstChild.nodeName === "IMG"){
-                            console.log(article[i].firstChild.nodeName);
                             zoom.setAttribute("src", article[i].firstChild.src);
                             zoom.style.display = 'block';
                             video.style.display = 'none';
                         }
                         if(article[i].firstChild.nodeName === "VIDEO"){
-                            console.log(article[i].firstChild.nodeName);
                             video.firstChild.setAttribute("src", article[i].firstChild.src);
                             video.load();
                             zoom.style.display = 'none';
@@ -70,6 +68,13 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
+                document.addEventListener("keypress", function(event) {
+                    if (event.key === "o") {
+                        console.log("previous");
+                        event.preventDefault();
+                        previous.click();
+                    }
+                });
 
 
                 //element suivant
@@ -77,13 +82,11 @@ function lightbox(){
                     if(i < max){
                         i = i + 1;
                         if(article[i].firstChild.nodeName === "IMG"){
-                            console.log(article[i].firstChild.nodeName);
                             zoom.setAttribute("src", article[i].firstChild.src);
                             zoom.style.display = 'block';
                             video.style.display = 'none';
                         }
                         if(article[i].firstChild.nodeName === "VIDEO"){
-                            console.log(article[i].firstChild.nodeName);
                             video.firstChild.setAttribute("src", article[i].firstChild.src);
                             video.load();
                             zoom.style.display = 'none';
@@ -99,6 +102,13 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
+                document.addEventListener("keypress", function(event) {
+                    if (event.key === "p") {
+                        console.log("next");
+                        event.preventDefault();
+                        next.click();
+                    }
+                });
                 break;
             }
         }
@@ -108,4 +118,11 @@ function lightbox(){
     closeSlide.onclick = function() {
         slideBg.style.display = "none";
     }
+    document.addEventListener("keypress", function(event) {
+        if (event.key === "m") {
+            console.log("close");
+            event.preventDefault();
+            closeSlide.click();
+        }
+    });
 }
