@@ -4,7 +4,7 @@ async function getMedia() {
     //convertir l'id en nombre entier
     const id = parseInt(params.get('id'),10);
     //recuperer le fichier json
-    const response = await fetch('../../data/photographers.json', {method: 'GET'});
+    const response = await fetch('data/photographers.json', {method: 'GET'});
     const donnees = await response.json();
     //filtrer que les objets du photographe concerné
     const media = donnees.media.filter(media => media.photographerId == id);
