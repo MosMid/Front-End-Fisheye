@@ -44,7 +44,7 @@ const messageError = document.querySelector("#messageErr");
 let firstNameIsValid = false;
 let lastNameIsValid = false;
 let emailIsValid = false;
-let dateIsValid = false;
+let messageIsValid = false;
 
 const nameReg = /^[a-zA-Z]+$/;
 const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

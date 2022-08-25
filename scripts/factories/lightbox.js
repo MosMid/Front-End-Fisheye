@@ -69,7 +69,7 @@ function lightbox(){
                     }
                 }
                 document.addEventListener("keypress", function(event) {
-                    if (event.key === "o") {
+                    if (event.key === "ArrowLeft") {
                         console.log("previous");
                         event.preventDefault();
                         previous.click();
@@ -103,7 +103,7 @@ function lightbox(){
                     }
                 }
                 document.addEventListener("keypress", function(event) {
-                    if (event.key === "p") {
+                    if (event.key === "ArrowRight") {
                         console.log("next");
                         event.preventDefault();
                         next.click();
@@ -119,7 +119,7 @@ function lightbox(){
         slideBg.style.display = "none";
     }
     document.addEventListener("keypress", function(event) {
-        if (event.key === "m") {
+        if (event.key === "Escape") {
             console.log("close");
             event.preventDefault();
             closeSlide.click();
