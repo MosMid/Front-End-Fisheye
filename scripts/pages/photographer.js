@@ -1,3 +1,4 @@
+import {keyboard} from './keyboard.js';
 async function getMedia() {
     //recuperer l'id du photographe à partir de l'url de la page
     const params = (new URL(document.location)).searchParams;
@@ -10,8 +11,6 @@ async function getMedia() {
     const media = donnees.media.filter(media => media.photographerId == id);
     const photographer = donnees.photographers.filter(photographers => photographers.id == id);
     lightbox(media);
-    const items = document.getElementsByClassName('article');
-    keyboard(items);
     return {media, photographer};
 };
 
@@ -48,6 +47,8 @@ async function sortMedia(media) {
     const tableau = Array.from( document.getElementsByClassName('tri'));
     const order = document.getElementById("order");
     const msec = document.getElementById("msec");
+    const items = document.getElementsByClassName('article');
+    keyboard(items);
     tableau.forEach(box => {
         box.onclick = async function sort() {
             let val = box.id;

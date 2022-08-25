@@ -1,3 +1,4 @@
+    import {keyboard} from './keyboard.js';
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
         let response = await fetch('data/photographers.json', {method: 'GET'});

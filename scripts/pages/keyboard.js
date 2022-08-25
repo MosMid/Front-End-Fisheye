@@ -1,4 +1,4 @@
-function keyboard(data){
+export function keyboard(data){
     const items = data;
     const codes = {38:-3,40:3,39:1,37:-1};
     let reset =0;
@@ -13,10 +13,12 @@ function keyboard(data){
 
 
     // navigation entre les elements de la page
+    let focused = false;
     var i = 0;
     function handleKeys(e) {
         var keyCode = e.keyCode;
         if(codes[keyCode]){
+            focused = true;
             reset.style.transform = 'none';
             reset.style.boxShadow = 'none';
             var t = items[i];
@@ -38,9 +40,12 @@ function keyboard(data){
     // selection de l'element souhaité
     addEventListener('keydown', handleKeys);
     document.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          items[i].click();
+        if (focused == true){
+            if (event.key === "Enter") {
+            event.preventDefault();
+            items[i].click();
+            focused = false;
+            }
         }
     });
 };

@@ -237,16 +237,16 @@ html {
     background-color: white;
 }
   
-.dropdown-content a:hover {
+.dropdown-content a:hover, .dropdown-content a:focus-within {
     background-color: white;
     color: #901C1C;
 }
   
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
     display: block;
 }
   
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn, .dropdown:focus-within .dropbtn {
     background-color: #901C1C;
 }
 
