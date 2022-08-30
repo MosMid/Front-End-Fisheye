@@ -10,7 +10,6 @@ async function getMedia() {
     //filtrer que les objets du photographe concerné
     const media = donnees.media.filter(media => media.photographerId == id);
     const photographer = donnees.photographers.filter(photographers => photographers.id == id);
-    lightbox(media);
     return {media, photographer};
 };
 
@@ -44,15 +43,12 @@ async function displayHeader(photographer) {
 
 // le tri des elements du photographe
 async function sortMedia(media) {
-    const tableau = Array.from( document.getElementsByClassName('tri'));
+    const list = document.querySelector('.dropdown-content');
     const order = document.getElementById("order");
     const msec = document.getElementById("msec");
-    const items = document.getElementsByClassName('article');
-    keyboard(items);
-    tableau.forEach(box => {
-        box.onclick = async function sort() {
-            let val = box.id;
-            order.textContent = box.textContent;
+        list.addEventListener("click", function sort(e){ 
+            let val = e.target.id;
+            order.textContent = e.target.textContent;
             if (val == "likes") {
                 media.sort((a, b) => {
                     return b.likes - a.likes;
@@ -81,15 +77,13 @@ async function sortMedia(media) {
             }
             msec.innerHTML='';
             displayData(media);
-        } 
-        
-    });
+        });
 }
 
 // affichage des elements du photographe
 async function displayData(media) {
     const mediaSection = document.querySelector(".media_section");
-    // total des likes du photographe
+    mediaSection.replaceChildren();
     var i = 0;
     var j = 0;
     media.forEach((medias) => {
@@ -99,17 +93,23 @@ async function displayData(media) {
         const userMediaDOM = mediaModel.getUserMediaDOM();
         mediaSection.appendChild(userMediaDOM);
     });
+    // total des likes du photographe
     let totalLikes = document.querySelector('#totalLikes');
     totalLikes.textContent = i;
+    const items = document.getElementsByClassName('article');
+    // attendre que les elements de la page se chargent
+    while (items.length < media.length){};
+    keyboard(items); 
 };
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographer } = await getMedia();
-    displayHeader(photographer);
-    const { media } = await getMedia();
-    sortMedia(media);
+    const {media} = await getMedia();
     displayData(media);
+    const {photographer} = await getMedia();
+    displayHeader(photographer);
+    lightbox(media);
+    sortMedia(media);
 };
 
 init();

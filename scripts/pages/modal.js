@@ -17,6 +17,13 @@ closeModalCross.addEventListener('click', closeModal);
 closeModaleCross2.addEventListener('click', closeModal);
 closeModalBtn.addEventListener('click', closeModal);
 
+document.addEventListener('keydown', (e) => {
+    e = e || window.event;
+    if (e.keyCode === 27) {
+        closeModal();
+    }
+})
+
 //Fermer la modal
 function closeModal() {
     modal.style.display = "none";

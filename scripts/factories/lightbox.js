@@ -21,7 +21,6 @@ function lightbox(){
                     video.style.display = 'none';
                 }
                 if(wantedArticle.firstChild.nodeName === "VIDEO"){
-                    console.log(video);
                     video.firstChild.setAttribute("src", imgSrc);
                     video.load();
                     zoom.style.display = 'none';
@@ -68,14 +67,6 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
-                document.addEventListener("keypress", function(event) {
-                    if (event.key === "ArrowLeft") {
-                        console.log("previous");
-                        event.preventDefault();
-                        previous.click();
-                    }
-                });
-
 
                 //element suivant
                 next.onclick = function(){
@@ -102,14 +93,6 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
-                document.addEventListener("keypress", function(event) {
-                    if (event.key === "ArrowRight") {
-                        console.log("next");
-                        event.preventDefault();
-                        next.click();
-                    }
-                });
-                break;
             }
         }
     }
@@ -118,11 +101,15 @@ function lightbox(){
     closeSlide.onclick = function() {
         slideBg.style.display = "none";
     }
-    document.addEventListener("keypress", function(event) {
-        if (event.key === "Escape") {
-            console.log("close");
-            event.preventDefault();
+    
+    document.addEventListener('keydown', (e) => {
+        e = e || window.event;
+        if (e.keyCode === 37) {
+          previous.click();
+        } else if (e.keyCode === 39) {
+          next.click();
+        } else if (e.keyCode === 27) {
             closeSlide.click();
         }
-    });
+    })
 }
