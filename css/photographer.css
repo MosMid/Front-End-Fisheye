@@ -3,6 +3,10 @@ html {
     margin: auto;
 }
 
+#logo {
+    margin-left: 0;
+}
+
 .photograph-header {
     position: relative;
     background-color: #FAFAFA;
@@ -218,7 +222,6 @@ html {
 .dropdown-content a {
     position: relative;
     color: white;
-    padding-left: 20px;
     padding-bottom: 5px;
     padding-top: 5px;
     text-decoration: none;
