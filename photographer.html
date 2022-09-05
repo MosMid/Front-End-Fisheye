@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -10,70 +10,69 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="logo"/>
+      <a href="index.html" tabindex="1" id="logo"><img src="assets/images/logo.png" class="logo" /></a>
     </header>
     <!-- contact modal -->
     <div class="modal">
       <div id="sent">
         <span class="close2">&times;</span>
         <p>Message envoyé!</p>
-        <button id="fermer">Fermer</button>
+        <button id="fermer" tabindex="8">Fermer</button>
       </div>
       <div class="modalbg">
         <p id="contactezmoi">Contactez-moi</p>
         <p id="nom"></p>
         <span class="close">&times;</span>
         <div class="modal-body" id="form">
-          <form>
+          <form id="form">
             <div class="formData">
               <label for="first">Prénom<span class="error" id="firstErr"></span></label><br>
-              <input class="text-control" type="text" id="first" name="first"/><br>
+              <input class="text-control" type="text" id="first" name="first" tabindex="3"/><br>
             </div>
             <div class="formData">
               <label for="last">Nom<span id="lastErr" class="error"></span></label><br>
-              <input class="text-control" type="text" id="last" name="last"/><br>
+              <input class="text-control" type="text" id="last" name="last" tabindex="4"/><br>
             </div>
             <div class="formData">
               <label for="email">Email<span id="emailErr" class="error"></span></label><br>
-              <input class="text-control" type="email" id="email" name="email"/><br>
+              <input class="text-control" type="email" id="email" name="email" tabindex="5"/><br>
             </div>
             <div class="formData">
               <label for="message">Votre message <span id="messageErr" class="error"></span></label><br>
-              <textarea class="text-control" type="text" id="message" name="message"></textarea><br>
+              <textarea class="text-control" type="text" id="message" name="message" tabindex="6"></textarea><br>
             </div>
-            <input class="btn-submit" type="submit" class="button" value="Envoyer" aria-label="envoyer"/>
+            <input class="btn-submit" type="submit" class="button" value="Envoyer" aria-label="envoyer" tabindex="7"/>
           </form>
         </div>
   
       </div>
     </div>
     
-
     <!-- lightbox -->
     <div id="slide">
-      <span id="closeSlide">&times;</span>
-      <div id="previous">&#60;</div>
+      <span id="closeSlide" tabindex="0" aria-label="close media">&times;</span>
+      <div id="previous" tabindex="0" aria-label="previous media">&#60;</div>
       <div id="zoomContainer">
         <img src="" alt="" id="zoom">
         <video id="video" controls><source src="" type="video/mp4"></video>
         <div id="title"></div>
       </div>
-      <div id="next">&#62;</div>
+      <div id="next" tabindex="0" aria-label="next media">&#62;</div>
     </div>
 
     <!-- photos videos -->
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" tabindex="2">Contactez-moi</button>
       </div>
       <div class="sort">
         <p>Trier par</p>
         <div class="dropdown">
-          <button class="dropbtn" id="order">...</button>
+          <button class="dropbtn" id="order" tabindex="9">...</button>
           <div class="dropdown-content">
-          <a href="#" id="date" class="tri">Date</a>
-          <a href="#" id="likes" class="tri">Popularité</a>
-          <a href="#" id="titre" class="tri">Titre</a>
+          <a href="#" id="date" class="tri" tabindex="10">Date</a>
+          <a href="#" id="likes" class="tri" tabindex="11">Popularité</a>
+          <a href="#" id="titre" class="tri" tabindex="12">Titre</a>
           </div>
         </div>
       </div>
