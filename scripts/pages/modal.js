@@ -17,19 +17,18 @@ closeModalCross.addEventListener('click', closeModal);
 closeModaleCross2.addEventListener('click', closeModal);
 closeModalBtn.addEventListener('click', closeModal);
 
-document.addEventListener('keydown', (e) => {
-    e = e || window.event;
-    if (e.keyCode === 27) {
-        closeModal();
-    }
-})
-
 //Fermer la modal
 function closeModal() {
     modal.style.display = "none";
     modalbg.style.display = "block";
     sent.style.display = "none";
 }
+document.addEventListener("keyup", (e) => {
+    if (e.key == "Escape") {
+        closeModal();
+    }
+});
+
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -63,6 +62,7 @@ form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (firstName.value.match(nameReg) && firstName.value.length >1) {
         firstNameError.innerText = "";
+        console.log("prenom: ", firstName.value);
     firstNameIsValid = true;
     } else {
         firstNameError.innerText = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "(Deux caractères minimum de aA à zZ)";
@@ -71,26 +71,28 @@ form.addEventListener("submit", function (e) {
   
     if (lastName.value.match(nameReg) && lastName.value.length >1) {
         lastNameError.innerText = "";
-    lastNameIsValid = true;
+        lastNameIsValid = true;
+        console.log("nom: ", lastName.value);
     } else {
         lastNameError.innerText = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "(Deux caractères minimum de aA à zZ)";
-    firstNameIsValid = false;
+        lastNameIsValid = false;
     }
   
     if (email.value.match(emailReg)) {
         emailError.innerText = "";
-    emailIsValid = true;
+        emailIsValid = true;
+        console.log("email: ", email.value);
     } else {
         emailError.innerText = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "(Veuillez saisir une adresse email valide!)";
-    firstNameIsValid = false;
+        emailIsValid = false;
     }
   
     if (message.value.length > 1) {
         messageError.innerText = "";
-    messageIsValid = true;
+        messageIsValid = true;
     } else {
         messageError.innerText = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + "(Veuillez saisir votre message)";
-    firstNameIsValid = false;
+        messageIsValid = false;
     }
   
     if (firstNameIsValid && lastNameIsValid && emailIsValid && messageIsValid){

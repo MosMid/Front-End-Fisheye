@@ -1,4 +1,4 @@
-import {keyboard} from './keyboard.js';
+//import {keyboard} from './keyboard.js';
 async function getMedia() {
     //recuperer l'id du photographe à partir de l'url de la page
     const params = (new URL(document.location)).searchParams;
@@ -10,6 +10,7 @@ async function getMedia() {
     //filtrer que les objets du photographe concerné
     const media = donnees.media.filter(media => media.photographerId == id);
     const photographer = donnees.photographers.filter(photographers => photographers.id == id);
+    lightbox(media);
     return {media, photographer};
 };
 
@@ -43,12 +44,13 @@ async function displayHeader(photographer) {
 
 // le tri des elements du photographe
 async function sortMedia(media) {
-    const list = document.querySelector('.dropdown-content');
+    const tableau = Array.from( document.getElementsByClassName('tri'));
     const order = document.getElementById("order");
-    const msec = document.getElementById("msec");
-        list.addEventListener("click", function sort(e){ 
-            let val = e.target.id;
-            order.textContent = e.target.textContent;
+    const msec = document.getElementById("msec")
+    tableau.forEach(box => {
+        box.onclick = async function sort() {
+            let val = box.id;
+            order.textContent = box.textContent;
             if (val == "likes") {
                 media.sort((a, b) => {
                     return b.likes - a.likes;
@@ -56,15 +58,13 @@ async function sortMedia(media) {
             }
             if (val == "date") {
                 media.sort((a, b) => {
-                    let da = new Date(a.date),
-                        db = new Date(b.date);
+                    let da = new Date(a.date), db = new Date(b.date);
                     return db - da;
                 });
             }
             if (val == "titre") {
                 media.sort((a, b) => {
-                    let fa = a.title.toLowerCase(),
-                        fb = b.title.toLowerCase();
+                    let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
                 
                     if (fa < fb) {
                         return -1;
@@ -77,39 +77,49 @@ async function sortMedia(media) {
             }
             msec.innerHTML='';
             displayData(media);
-        });
+        } 
+        
+    });
 }
 
 // affichage des elements du photographe
 async function displayData(media) {
     const mediaSection = document.querySelector(".media_section");
-    mediaSection.replaceChildren();
+    // total des likes du photographe
     var i = 0;
     var j = 0;
     media.forEach((medias) => {
-        i = i + media[j].likes;
-        j = j + 1;
         const mediaModel = mediaFactory(medias);
         const userMediaDOM = mediaModel.getUserMediaDOM();
         mediaSection.appendChild(userMediaDOM);
+        let items = document.querySelectorAll(".article");
+        items[j].setAttribute("tabindex", "0");
+        i = i + media[j].likes;
+        j = j + 1;
     });
-    // total des likes du photographe
     let totalLikes = document.querySelector('#totalLikes');
     totalLikes.textContent = i;
-    const items = document.getElementsByClassName('article');
-    // attendre que les elements de la page se chargent
-    while (items.length < media.length){};
-    keyboard(items); 
-};
+    //const items = document.getElementsByClassName('article');
+    //keyboard(items);
+    document.addEventListener("keyup", (e) => {
+        if (e.key == "Tab") {
+            console.log(document.activeElement);
+        }
+    });
+    document.addEventListener("keyup", (e) => {
+        if (e.key == "Enter") {
+            document.activeElement.click();
+        }
+    });
+}
 
 async function init() {
     // Récupère les datas des photographes
-    const {media} = await getMedia();
-    displayData(media);
-    const {photographer} = await getMedia();
+    const { photographer } = await getMedia();
     displayHeader(photographer);
-    lightbox(media);
+    const { media } = await getMedia();
     sortMedia(media);
-};
+    displayData(media);
+}
 
-init();
+init()
