@@ -1,18 +1,17 @@
 function mediaFactory(data) {
     const { title, image, likes, video, photographerId } = data;
-    obj = data;
+    let obj = data;
     let picture = "";
     //Photo height
     let hauteur = (window.screen.width * 0.26);
 
     //affichage des elements d'une photo/video
     function getUserMediaDOM() {
-
         const container = document.createElement('div');
         container.setAttribute("class", "container");
-
         const article = document.createElement( 'article' );
         article.setAttribute("class", "article");
+        article.setAttribute("aria-label", title);
         article.setAttribute("onclick", "myFunction(this)");
         const img = document.createElement( 'img' );
         const clip = document.createElement( 'video' );
@@ -38,7 +37,6 @@ function mediaFactory(data) {
         const coeur = document.createElement('i');
         coeur.setAttribute("class", "fa-solid fa-heart");
         var intLikes = parseInt(likes,10);
-
 
         //Incrementation des likes
         let clicked = false;
@@ -69,9 +67,6 @@ function mediaFactory(data) {
         div.appendChild(titre);
         div.appendChild(like);
         container.appendChild(coeur);
-        /*article.addEventListener("click", function(){
-            window.location.href= "./photographer.html?id="+id
-        })*/
         return container;
     }
     return { getUserMediaDOM }

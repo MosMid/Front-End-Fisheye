@@ -11,23 +11,27 @@ function lightbox(){
     // Lancement de la modale lightbox
     myFunction = function(e) {
         let imgSrc = e.firstChild.src;
+        next.focus()
         for (let i = 0; i < article.length; i++) {
             if (imgSrc === article[i].firstChild.src){
                 let wantedArticle = article[i];
                 slideBg.style.display = "block";
                 if(wantedArticle.firstChild.nodeName === "IMG"){
                     zoom.setAttribute("src", imgSrc);
+                    zoom.setAttribute("tabindex", "0");
                     zoom.style.display = 'block';
                     video.style.display = 'none';
+                    closeSlide.focus();
                 }
                 if(wantedArticle.firstChild.nodeName === "VIDEO"){
+                    console.log(video);
                     video.firstChild.setAttribute("src", imgSrc);
                     video.load();
                     zoom.style.display = 'none';
                     video.style.display = 'block';
+                    video.focus();
                 }
                 title.textContent = wantedArticle.childNodes[1].childNodes[0].textContent;
-
 
                 const max = article.length - 1;
                 if(i <= 0){
@@ -67,6 +71,13 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
+                document.addEventListener("keypress", function(event) {
+                    if (event.key === "o") {
+                        console.log("previous");
+                        event.preventDefault();
+                        previous.click();
+                    }
+                });
 
                 //element suivant
                 next.onclick = function(){
@@ -93,23 +104,24 @@ function lightbox(){
                         next.style.color ='#901C1C';
                     }
                 }
+                document.addEventListener("keypress", function(event) {
+                    if (event.key === "p") {
+                        console.log("next");
+                        event.preventDefault();
+                        next.click();
+                    }
+                });
+                break;
             }
         }
     }
-
     //fermeture de la modale lightbox
     closeSlide.onclick = function() {
         slideBg.style.display = "none";
     }
-    
-    document.addEventListener('keydown', (e) => {
-        e = e || window.event;
-        if (e.keyCode === 37) {
-          previous.click();
-        } else if (e.keyCode === 39) {
-          next.click();
-        } else if (e.keyCode === 27) {
+    document.addEventListener("keyup", (e) => {
+        if (e.key == "Escape") {
             closeSlide.click();
         }
-    })
+    });
 }
